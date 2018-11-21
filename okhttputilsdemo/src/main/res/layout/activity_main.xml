@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:onClick="okhttp_json"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获取Json数据"/>
+
+    <Button
+        android:onClick="okhttp_table"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="表单提交"/>
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <!--ScrollView只能包裹一个直接的子view,否则会报错,解决办法就是放一个容器,然后容器里面有多少控件就没有关系了-->
+        <TextView
+            android:id="@+id/text_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World!"/>
+    </ScrollView>
+
+</LinearLayout>
