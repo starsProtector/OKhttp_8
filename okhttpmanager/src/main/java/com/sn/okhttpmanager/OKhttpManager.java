@@ -27,14 +27,14 @@ import okhttp3.Response;
  * 解决了okhttp,网络成功,代码在子线程的问题,把请求网络成功后逻辑代码放到主线程执行
  * 封装用到了哪些知识点?
  * 1.handler , 单例模式 , 接口 ,okhttp
- *
+ * <p>
  * 双重锁:http://www.blogjava.net/kenzhh/archive/2013/03/15/357824.html
  */
 public class OKhttpManager {
     //////////////////////////////////////////定义成员变量/////////////////////////
     private OkHttpClient mClient;
 
-    private volatile static OKhttpManager sManager;//防止多个线程同时访问.比synchronized轻
+    private static OKhttpManager sManager;//防止多个线程同时访问.比synchronized轻
 
     private static Handler mHandler;
 
@@ -50,11 +50,7 @@ public class OKhttpManager {
     ///////////////////////////////////////使用单例模式,通过获取的方式拿到对象/////////////
     public static OKhttpManager getInstance() {
         if (sManager == null) {
-            synchronized (OKhttpManager.class) {
-                if (sManager == null) {
-                    sManager = new OKhttpManager();
-            }
-            }
+            sManager = new OKhttpManager();
         }
         return sManager;
     }

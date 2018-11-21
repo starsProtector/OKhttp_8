@@ -21,8 +21,8 @@ import okhttp3.Response;
 //作业:使用OKhttp设置缓存
 public class MainActivity extends AppCompatActivity {
     //    private String Path="http://192.168.253.1:8080/baidu.html";
-//    private String Path = "http://publicobject.com/helloworld.txt";
-    private String Path = "https://api-quality.jiemian.com/goodsCat/getBrandList";
+    private String Path = "http://publicobject.com/helloworld.txt";
+//    private String Path = "https://api-quality.jiemian.com/goodsCat/getBrandList";
 
     private TextView mText_tv;
     private static final int SUCCESS = 993;

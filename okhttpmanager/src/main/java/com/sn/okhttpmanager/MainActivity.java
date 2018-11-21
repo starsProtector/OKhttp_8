@@ -9,6 +9,12 @@ import android.widget.ImageView;
 
 import java.util.HashMap;
 
+/**
+ * 我使用okhttp,我要吐槽的地方:
+ * 1.okhttpClinet,你项目中有上百个类,你请求网络时,都要去创建一个okhttpClinet对象,那么就极大浪费内存
+ * 2.okhttpclient,步骤非常的繁琐,代码冗余
+ * 3.okhttp异步回调在子线程,你必然有一个操作,handler,把子线程得到数据放到主线程更新UI,创建handler对象
+ */
 public class MainActivity extends AppCompatActivity {
     //使用封装后的OKhttp,所定义的成员变量
     private OKhttpManager mOKhttpManager= OKhttpManager.getInstance();
@@ -54,13 +60,6 @@ public class MainActivity extends AppCompatActivity {
 
     //下载图片
     public void okhttp_picture(View view){
-/*        mOKhttpManager.asyncGetByteByURL(Picture_path, new OKhttpManager.Func2() {
-            @Override
-            public void onResponse(byte[] result) {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(result, 0, result.length);
-                mImageView.setImageBitmap(bitmap);
-            }
-        });*/
 
         mOKhttpManager.asyncGetByteByURL(Picture_path, new OKhttpManager.Func2() {
             @Override

@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                     mTv_status.setText(text);
                     break;
                 case FALL:
-                    Toast.makeText(MainActivity.this, "mei you wang", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "没有网", Toast.LENGTH_SHORT).show();
                     break;
                 default:
                     break;

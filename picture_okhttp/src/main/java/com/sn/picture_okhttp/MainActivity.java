@@ -25,11 +25,16 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/**
+ * 使用okhttp进行图片的上传下载
+ */
 public class MainActivity extends AppCompatActivity {
-    private String Path="https://10.url.cn/eth/ajNVdqHZLLAxibwnrOxXSzIxA76ichutwMCcOpA45xjiapneMZsib7eY4wUxF6XDmL2FmZEVYsf86iaw/";
+
+    private String Path = "https://10.url.cn/eth/ajNVdqHZLLAxibwnrOxXSzIxA76ichutwMCcOpA45xjiapneMZsib7eY4wUxF6XDmL2FmZEVYsf86iaw/";
     private static final int SUCCESS = 993;
     private static final int FALL = 814;
-    Handler handler=new Handler(){
+
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -68,9 +73,10 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 根据点击事件获取络上的图片资源,使用的是OKhttp框架
+     *
      * @param view
      */
-    public void Picture_okhttp_bt(View view){
+    public void Picture_okhttp_bt(View view) {
         //1. 创建OKhttpClient对象
         OkHttpClient okHttpClient = new OkHttpClient();
         //2.建立Request对象,设置参数,请求方式如果是get,就不用设置,默认使用的就是get
@@ -92,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
                 byte[] Picture_bt = response.body().bytes();
                 //通过handler更新UI
                 Message message = handler.obtainMessage();
-                message.obj=Picture_bt;
-                message.what=SUCCESS;
+                message.obj = Picture_bt;
+                message.what = SUCCESS;
                 handler.sendMessage(message);
 
             }
@@ -104,10 +110,9 @@ public class MainActivity extends AppCompatActivity {
     //注意:有时候上传图片失败,是服务器规定还要上传一个Key,如果开发中关于网络这一块出现问题,就多和面试官沟通沟通
     public void uploading(View view) {
         //图片上传接口地址
-        String url="http://123.206.14.104:8080/FileUploadDemo/FileUploadServlet";
+        String url = "https://www.718shop.com/sell/sell.m.picture.upload.do";
         //创建上传文件对象
-        File file = new File(Environment.getExternalStorageDirectory(), "big.jpg");
-
+        File file = new File(Environment.getExternalStorageDirectory()+"/Download", "big.jpg");
 
         //创建RequestBody封装参数
         RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
@@ -125,8 +130,8 @@ public class MainActivity extends AppCompatActivity {
         //创建okhttp对象
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10,TimeUnit.SECONDS)
-                .writeTimeout(10,TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
                 .build();
 
         //上传完图片,得到服务器反馈数据
@@ -135,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call call, IOException e) {
                 Log.e("ycf", "uploadMultiFile() e=" + e);
             }
-
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
